@@ -163,3 +163,7 @@ tmp
 *.log*
 dist
 out
+
+# Generated files
+test/foo.png
+test/foo.svg
