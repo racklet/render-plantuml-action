@@ -1,0 +1,19 @@
+on: [push]
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    name: Test rendering PlantUML files
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Render PlantUML files
+      uses: ./
+      with:
+        formats: "png,svg"
+        log-level: "debug"
+      id: render
+    - name: Print the rendered files
+      run: echo "The files that changed were ${{ steps.render.outputs.rendered-files }}"
+    - name: Verify test files are present
+      run: 'make verify'
